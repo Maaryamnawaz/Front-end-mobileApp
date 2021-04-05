@@ -1,6 +1,9 @@
 package com.awesomeproject;
 
 import com.facebook.react.ReactActivity;
+//... 
+import com.BV.LinearGradient.LinearGradientPackage; 
+
 
 public class MainActivity extends ReactActivity {
 
@@ -12,4 +15,6 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "AwesomeProject";
   }
+  
+
 }

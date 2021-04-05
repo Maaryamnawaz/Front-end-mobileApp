@@ -1,17 +1,21 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
+import {Picker} from '@react-native-picker/picker';
 import {Text, SafeAreaView, View, Button, TouchableOpacity,Dimensions,
-StyleSheet, TextInput, Platform, StatusBar
+StyleSheet, TextInput, Platform, StatusBar, ScrollView
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-const Login = ({navigation}) => {
+const SignUp = ({navigation}) => {
   const [data, setData] = React.useState({
     email : '',
     password : '',
+    confirm_password: '',
+    name : '',
     check_textInputChange: false,
-    secureTextEntry : true
+    secureTextEntry : true,
+    confirm_secureTextEntry : true
   });
   const textInputchange = (val) => {
     if(val.length != 0)
@@ -34,19 +38,39 @@ const handllePasswordChange =(val) => {
     password : val 
   });
 }
+const handleConfirmPasswordChange =(val) => {
+  setData({
+    ...data,
+    confirm_password : val 
+  });
+}
 const UpdateSecureTextEntry =() => {
   setData({
     ...data,
     secureTextEntry : !data.secureTextEntry
 });
 }
-  return(
+const UpdateConfirmSecureTextEntry =() => {
+  setData({
+    ...data,
+    confirm_secureTextEntry : !data.confirm_secureTextEntry
+});
+}
+const [pickerValue, setPickerValue] = useState()
+return(
+    <ScrollView>
   <View style = {styles.container}>
     <StatusBar backgroundColor ='#5f9ea0' barStyle="Light-content"/>
-    <View style = {styles.header}>
-<Text style ={styles.textheader}> Welcome!</Text>
-</View>
+    
 <View style= {styles.footer}>
+<Text style ={styles.textfooter}> Full Name </Text>
+<View style = {styles.action}>
+<FontAwesomeIcons name = "user-circle" color = "black" size ={20} />
+<TextInput placeholder = "Your Full Name"
+  style ={styles.textInput}
+  autoCapitalize ="words"
+   />
+</View>
 <Text style ={styles.textfooter}> 
 Email 
 </Text>
@@ -65,6 +89,39 @@ Email
   size ={20}
   />
   :null}
+</View>
+<Text style ={styles.textfooter}> Age </Text>
+<View style = {styles.action}>
+<FontAwesomeIcons name = "calendar-check-o" color = "black" size ={20}
+  />
+<TextInput placeholder = "Your Age"
+  style ={styles.textInput}
+  autoCapitalize ="none"
+   />
+</View>
+<Text style ={styles.textfooter}> Weight </Text>
+<View style = {styles.action}>
+<TextInput placeholder = "Your Weight"
+  style ={styles.textInput}
+  autoCapitalize ="none"
+   />
+</View>
+<Text style ={styles.textfooter}> Height </Text>
+<View style = {styles.action}>
+<TextInput placeholder = "Your Height"
+  style ={styles.textInput}
+  autoCapitalize ="none"
+   />
+</View>
+<Text style ={styles.textfooter}> Gender </Text>
+<View style = {styles.action}>
+<Picker style ={styles.picker}
+ selectedValue={pickerValue}
+ onValueChange = {(itemValue)=> setPickerValue(itemValue)}
+ >
+   <Picker.Item label = "male" value = "male"/>
+   <Picker.Item label ="female" value = "female"/>
+ </Picker>
 </View>
 <Text style= {[styles.textfooter,{marginTop : 35}]}> Password</Text> 
 <View style = {styles.action}>
@@ -92,36 +149,58 @@ Email
      }
   </TouchableOpacity>
 </View>
+<Text style= {[styles.textfooter,{marginTop : 35}]}> Confirm Password</Text> 
+<View style = {styles.action}>
+  <FontAwesomeIcons name = "lock" color = "black" size ={20}
+  />
+  <TextInput placeholder = "Confirm Password"
+  secureTextEntry ={data.confirm_secureTextEntry ? true : false}
+  style ={styles.textInput}
+  autoCapitalize ="none" 
+  onChangeText ={(val) => handleConfirmPasswordChange(val)}
+  />
+  <TouchableOpacity
+  onPress ={UpdateConfirmSecureTextEntry}
+   >
+     {data.secureTextEntry ?
+  <Feather name ="eye-off"
+  color = "blue"
+  size ={20}
+  />
+  :
+  <Feather name ="eye"
+  color = "blue"
+  size ={20}
+  />
+     }
+  </TouchableOpacity>
+  </View>
+  
 <View style = {styles.Button}>
-  <TouchableOpacity onPress = {()=> navigation.navigate('HomeScreen') }>
+<TouchableOpacity 
+onPress = {()=> navigation.navigate('HomeScreen')}>
 <LinearGradient
  colors = {['#5f9ea0','#5f9ea0']}
  style = {styles.login}>
   <Text style= {[styles.textSign, {color: 'black'}
     
-  ]} > Login </Text>
+  ]} > Sign Up </Text>
 </LinearGradient>
 </TouchableOpacity>
 <TouchableOpacity 
-onPress = {()=> navigation.navigate('SignUp') }
+onPress = {()=> navigation.goBack() }
 style = {[styles.signUp, {borderColor : '#5f9ea0',
 marginTop: 2}]}
 >
-  <Text style= {[styles.text, {color: '#5f9ea0'}]}> Not a registered User?Sign Up</Text>
-</TouchableOpacity>
-<TouchableOpacity 
-onPress = {()=> navigation.navigate('HomePage') }
-style = {[styles.signUp, {borderColor : '#5f9ea0',
-borderWidth : 0, marginTop: 0}]}
->
-<Text style= {[styles.text, {color: '#5f9ea0'}]}> Continue without Login </Text>
+<Text style= {[styles.text, {color: '#5f9ea0'}]}> Already a User?Login</Text>
 </TouchableOpacity>
 </View>
 </View>
 </View>
-    );
-  };
-export default Login ;
+</ScrollView> 
+);
+};
+export default SignUp ;
 const styles= StyleSheet.create({
   container : {
     flex :1,
@@ -155,7 +234,7 @@ flexDirection : 'row',
 marginTop: 0,
 borderBottomWidth: 1,
 borderBottomColor : '#5f9ea0',
-paddingBottom :5
+paddingBottom : 2
 },
 textInput : {
   flex :1, 
@@ -177,12 +256,12 @@ login: {
 textSign : {
   fontSize : 18,
   fontWeight : 'bold'
- 
 },
-
-text : {
-  fontSize : 15,
-},
-
+picker :{
+height:45,
+width: 300,
+borderColor: 'blue',
+borderWidth : 3
+}
   });
 
