@@ -44,7 +44,7 @@ const UpdateSecureTextEntry =() => {
   <View style = {styles.container}>
     <StatusBar backgroundColor ='#5f9ea0' barStyle="Light-content"/>
     <View style = {styles.header}>
-<Text style ={styles.textheader}> Welcome!</Text>
+<Text style ={styles.textheader}>Welcome to Health & Nutrition!</Text>
 </View>
 <View style= {styles.footer}>
 <Text style ={styles.textfooter}> 
@@ -99,23 +99,30 @@ Email
  style = {styles.login}>
   <Text style= {[styles.textSign, {color: 'black'}
     
-  ]} > Login </Text>
+  ]} > LOGIN </Text>
 </LinearGradient>
 </TouchableOpacity>
-<TouchableOpacity 
+<TouchableOpacity
 onPress = {()=> navigation.navigate('SignUp') }
 style = {[styles.signUp, {borderColor : '#5f9ea0',
-marginTop: 2}]}
->
-  <Text style= {[styles.text, {color: '#5f9ea0'}]}> Not a registered User?Sign Up</Text>
+marginTop: 2}]}>
+<LinearGradient colors ={['white','white']}
+style = {styles.login}>
+<Text style= {[styles.textSign, {color: '#5f9ea0'}]}> Not a registered User?SIGN UP</Text>
+</LinearGradient>
 </TouchableOpacity>
 <TouchableOpacity 
 onPress = {()=> navigation.navigate('HomePage') }
 style = {[styles.signUp, {borderColor : '#5f9ea0',
 borderWidth : 0, marginTop: 0}]}
 >
-<Text style= {[styles.text, {color: '#5f9ea0'}]}> Continue without Login </Text>
+<LinearGradient
+ colors = {['#5f9ea0','#5f9ea0']}
+ style = {styles.login}>
+<Text style= {[styles.textSign, {color: 'black'}]}> Continue without LOGIN </Text>
+</LinearGradient>
 </TouchableOpacity>
+
 </View>
 </View>
 </View>
@@ -139,12 +146,13 @@ footer: {
   borderTopLeftRadius : 35,
   borderTopRightRadius : 35,
   paddingHorizontal: 20,
-  paddingVertical : 30
-  },
+  paddingVertical : 30,
+},
   textheader: {
-    color : 'white',
+    color : 'black',
     fontWeight : 'bold',
-    fontSize : 30
+    fontSize : 30,
+    fontFamily: 'times new Roman'
   },
   textfooter: {
     color : 'black',
@@ -155,7 +163,8 @@ flexDirection : 'row',
 marginTop: 0,
 borderBottomWidth: 1,
 borderBottomColor : '#5f9ea0',
-paddingBottom :5
+paddingBottom :5,
+justifyContent: 'center'
 },
 textInput : {
   flex :1, 
@@ -165,24 +174,21 @@ textInput : {
 },
 button :{
   alignItems : 'center',
-  marginTop : 50
+  marginTop : 60,
+  marginLeft: 50,
+  justifyContent: 'center'
 },
 login: {
   width : '100%',
-  height : 50,
+  height : 60,
   justifyContent : 'center',
   alignItems: 'center',
-  borderRadius : 10
+  borderRadius : 20
 },
 textSign : {
   fontSize : 18,
   fontWeight : 'bold'
  
-},
-
-text : {
-  fontSize : 15,
-},
-
-  });
+}
+});
 

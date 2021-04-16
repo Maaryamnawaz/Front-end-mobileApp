@@ -3,7 +3,7 @@ import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
 import {Text, SafeAreaView, View, Button, TouchableOpacity,Dimensions,
-StyleSheet, TextInput, Platform, StatusBar, ScrollView
+StyleSheet, TextInput, Platform, StatusBar, ScrollView, Image
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -13,16 +13,28 @@ const HomeScreen = ({navigation}) => {
     <View style = {styles.container}>
     <StatusBar backgroundColor ='#5f9ea0' barStyle="Light-content"/>
     <View style = {styles.header}>
-    <Text style = {styles.textheader}> Welcome to Health And Nutrition!
+    <Text style = {styles.textheader}>Welcome to 
+    Health & Nutrition!
     </Text>
     </View>
      <View style= {styles.footer}>
-<View style = {styles.Button}>
-  <TouchableOpacity onPress = {()=> navigation.navigate('Profile') }>
+     <ScrollView contentContainerStyle={{alignSelf:'center'}}>
+     <View style = {styles.Button}>
+  <TouchableOpacity onPress = {()=> navigation.navigate('ChatBot') }>
 <LinearGradient
  colors = {['#5f9ea0','#5f9ea0']}
  style = {styles.login}>
-<FontAwesomeIcons name = "user-circle-o" color = "black" size ={20}/>
+  <Image source={require('../assests/chatbot.png')}/>
+  <Text style= {[styles.textSign, {color: 'white'}]} > ChatBot</Text>
+</LinearGradient>
+</TouchableOpacity>
+</View>
+<View style = {styles.Button}>
+<TouchableOpacity onPress = {()=> navigation.navigate('Profile') }>
+<LinearGradient
+ colors = {['#5f9ea0','#5f9ea0']}
+ style = {styles.login}>
+<Image source={require('../assests/profile.png')}/>
 <Text style= {[styles.textSign, {color: 'white'}]} > Profile </Text>
 </LinearGradient>
 </TouchableOpacity>
@@ -32,7 +44,7 @@ const HomeScreen = ({navigation}) => {
 <LinearGradient
  colors = {['#5f9ea0','#5f9ea0']}
  style = {styles.login}>
-  <FontAwesomeIcons name = "weights" color = "black" size ={20}/>
+ <Image style ={{width: 40, height: 40}}source={require('../assests/workout.png')}/>
   <Text style= {[styles.textSign, {color: 'white'}]}> Workouts </Text>
 </LinearGradient>
 </TouchableOpacity>
@@ -42,7 +54,8 @@ const HomeScreen = ({navigation}) => {
 <LinearGradient
  colors = {['#5f9ea0','#5f9ea0']}
  style = {styles.login}>
-  <Text style= {[styles.textSign, {color: 'white'}]}> Contact our Nutritionists </Text>
+<Image source={require('../assests/nutritionist.png')}/>
+  <Text style= {[styles.textSign, {color: 'white'}]}> Nutritionist </Text>
 </LinearGradient>
 </TouchableOpacity>
 </View>
@@ -51,7 +64,8 @@ const HomeScreen = ({navigation}) => {
 <LinearGradient
  colors = {['#5f9ea0','#5f9ea0']}
  style = {styles.login}>
-  <Text style= {[styles.textSign, {color: 'white'}]} > Blogs & SuccessStories </Text>
+<Image source={require('../assests/blogs.png')}/>
+  <Text style= {[styles.textSign, {color: 'white'}]} >  Facts </Text>
 </LinearGradient>
 </TouchableOpacity>
 </View>
@@ -60,19 +74,12 @@ const HomeScreen = ({navigation}) => {
 <LinearGradient
  colors = {['#5f9ea0','#5f9ea0']}
  style = {styles.login}>
-  <Text style= {[styles.textSign, {color: 'white'}]} > Healthy Recepies </Text>
+<Image source={require('../assests/recepie.png')}/>
+  <Text style= {[styles.textSign, {color: 'white'}]} > Recepies </Text>
 </LinearGradient>
 </TouchableOpacity>
 </View>
-<View style = {styles.Button}>
-  <TouchableOpacity onPress = {()=> navigation.navigate('ChatBot') }>
-<LinearGradient
- colors = {['#5f9ea0','#5f9ea0']}
- style = {styles.login}>
-  <Text style= {[styles.textSign, {color: 'white'}]} > ChatBot</Text>
-</LinearGradient>
-</TouchableOpacity>
-</View>
+</ScrollView>
 </View>
 </View>
 </ScrollView>
@@ -84,7 +91,7 @@ const styles= StyleSheet.create({
     flex :1,
     backgroundColor : '#5f9ea0'
   },
-  header: {
+header: {
     flex : 1,
     justifyContent : 'flex-end',
     paddingHorizontal: 10,
@@ -93,13 +100,13 @@ const styles= StyleSheet.create({
 footer: {
   flex :3, 
   backgroundColor : 'white',
-  borderTopLeftRadius : 35,
-  borderTopRightRadius : 35,
+  borderTopLeftRadius : 45,
+  borderTopRightRadius : 45,
   paddingHorizontal: 20,
   paddingVertical : 30
   },
   textheader: {
-    color : 'white',
+    color : 'black',
     fontWeight : 'bold',
     fontSize : 30
   },
@@ -127,17 +134,15 @@ button :{
 login: {
   flexDirection: 'row',
   width : '100%',
-  height : 50,
+  height : 100,
   justifyContent : 'center',
   alignItems: 'center',
   borderRadius : 10,
-  marginTop : 10
+  marginTop : 30,
 },
-
 textSign : {
   fontSize : 18,
   fontWeight : 'bold'
- 
 },
 signUp: {
   width : '100%',
@@ -151,6 +156,4 @@ text : {
   fontWeight: 'bold',
   color :'#5f9ea0'
 },
-
-  });
-
+});

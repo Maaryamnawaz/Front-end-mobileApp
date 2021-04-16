@@ -119,8 +119,8 @@ Email
  selectedValue={pickerValue}
  onValueChange = {(itemValue)=> setPickerValue(itemValue)}
  >
-   <Picker.Item label = "male" value = "male"/>
-   <Picker.Item label ="female" value = "female"/>
+   <Picker.Item label = "Male" value = "Male"/>
+   <Picker.Item label ="Female" value = "Female"/>
  </Picker>
 </View>
 <Text style= {[styles.textfooter,{marginTop : 35}]}> Password</Text> 
@@ -184,7 +184,7 @@ onPress = {()=> navigation.navigate('HomeScreen')}>
  style = {styles.login}>
   <Text style= {[styles.textSign, {color: 'black'}
     
-  ]} > Sign Up </Text>
+  ]} > REGISTER </Text>
 </LinearGradient>
 </TouchableOpacity>
 <TouchableOpacity 
@@ -192,7 +192,11 @@ onPress = {()=> navigation.goBack() }
 style = {[styles.signUp, {borderColor : '#5f9ea0',
 marginTop: 2}]}
 >
-<Text style= {[styles.text, {color: '#5f9ea0'}]}> Already a User?Login</Text>
+<LinearGradient
+ colors = {['#5f9ea0','#5f9ea0']}
+ style = {styles.login}>
+<Text style= {[styles.textSign, {color: 'black'}]}> Already a User?LOGIN</Text>
+</LinearGradient>
 </TouchableOpacity>
 </View>
 </View>
