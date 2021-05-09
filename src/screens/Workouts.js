@@ -10,7 +10,7 @@ const Workouts = ({navigation}) => {
   return(
     <ScrollView>
     <View style = {styles.container}>
-    <StatusBar backgroundColor ='#5f9ea0' barStyle="Light-content"/>
+    <StatusBar backgroundColor ='#01ab9d' barStyle="Light-content"/>
     <View style = {styles.header}>
     <Text style = {styles.textheader}> Pick your Today's Workout
     </Text>
@@ -20,7 +20,7 @@ const Workouts = ({navigation}) => {
 <View style = {styles.Button}>
   <TouchableOpacity onPress = {()=> navigation.navigate('FullBody') }>
 <LinearGradient
- colors = {['#5f9ea0','#5f9ea0']}
+ colors = {['#01ab9d','#01ab9d']}
  style = {styles.login}>
 <Image style ={{width: 40, height: 40}}source={require('../assests/full.png')}/>
 <Text style= {[styles.textSign, {color: 'white'}]} > Full body </Text>
@@ -30,7 +30,7 @@ const Workouts = ({navigation}) => {
 <View style = {styles.Button}>
 <TouchableOpacity onPress = {()=> navigation.navigate('Arms') }>
 <LinearGradient
- colors = {['#5f9ea0','#5f9ea0']}
+ colors = {['#01ab9d','#01ab9d']}
  style = {styles.login}>
 <Image style ={{width: 40, height: 40}}source={require('../assests/arm.png')}/>
 <Text style= {[styles.textSign, {color: 'white'}]}> Arm's Workout </Text>
@@ -40,7 +40,7 @@ const Workouts = ({navigation}) => {
 <View style = {styles.Button}>
   <TouchableOpacity onPress = {()=> navigation.navigate('Abs') }>
 <LinearGradient
- colors = {['#5f9ea0','#5f9ea0']}
+ colors = {['#01ab9d','#01ab9d']}
  style = {styles.login}>
    <Image style ={{width: 40, height: 40}}source={require('../assests/abs.png')}/>
   <Text style= {[styles.textSign, {color: 'white'}]}> Abs Workout </Text>
@@ -50,7 +50,7 @@ const Workouts = ({navigation}) => {
 <View style = {styles.Button}>
   <TouchableOpacity onPress = {()=> navigation.navigate('Legs') }>
 <LinearGradient
- colors = {['#5f9ea0','#5f9ea0']}
+ colors = {['#01ab9d','#01ab9d']}
  style = {styles.login}>
    <Image style ={{width: 40, height: 40}}source={require('../assests/legs.png')}/>
   <Text style= {[styles.textSign, {color: 'white'}]} > Leg's Workout </Text>
@@ -60,7 +60,7 @@ const Workouts = ({navigation}) => {
 <View style = {styles.Button}>
   <TouchableOpacity onPress = {()=> navigation.navigate('Shoulders') }>
 <LinearGradient
- colors = {['#5f9ea0','#5f9ea0']}
+ colors = {['#01ab9d','#01ab9d']}
  style = {styles.login}>
 <Image style ={{width: 40, height: 40}}source={require('../assests/shoulder.png')}/>
   <Text style= {[styles.textSign, {color: 'white'}]} > Shoulder's Workout </Text>
@@ -70,7 +70,7 @@ const Workouts = ({navigation}) => {
 <View style = {styles.Button}>
   <TouchableOpacity onPress = {()=> navigation.navigate('Facial') }>
 <LinearGradient
- colors = {['#5f9ea0','#5f9ea0']}
+ colors = {['#01ab9d','#01ab9d']}
  style = {styles.login}>
 <Image style ={{width: 40, height: 40}}source={require('../assests/face.png')}/>
   <Text style= {[styles.textSign, {color: 'white'}]} > Facial Workouts </Text>
@@ -80,7 +80,7 @@ const Workouts = ({navigation}) => {
 <View style = {styles.Button}>
   <TouchableOpacity onPress = {()=> navigation.navigate('WarmUp') }>
 <LinearGradient
- colors = {['#5f9ea0','#5f9ea0']}
+ colors = {['#01ab9d','#01ab9d']}
  style = {styles.login}>
 <Image style ={{width: 40, height: 40}}source={require('../assests/warmup.png')}/>
   <Text style= {[styles.textSign, {color: 'white'}]} > Warm Up </Text>
@@ -97,7 +97,7 @@ export default Workouts;
 const styles= StyleSheet.create({
   container : {
     flex :1,
-    backgroundColor : '#5f9ea0'
+    backgroundColor : '#01ab9d'
   },
 header: {
     flex : 1,
@@ -114,9 +114,10 @@ footer: {
   paddingVertical : 30
   },
   textheader: {
-    color : 'black',
+    color : 'white',
     fontWeight : 'bold',
-    fontSize : 30
+    fontSize : 30,
+    marginTop:40
   },
   textfooter: {
     color : 'black',
@@ -126,7 +127,7 @@ action: {
 flexDirection : 'row',
 marginTop: 0,
 borderBottomWidth: 1,
-borderBottomColor : '#5f9ea0',
+borderBottomColor : '#01ab9d',
 paddingBottom :5
 },
 textInput : {
@@ -163,7 +164,7 @@ signUp: {
 text : {
   fontSize : 18,
   fontWeight: 'bold',
-  color :'#5f9ea0'
+  color :'#01ab9d'
 },
 
   });

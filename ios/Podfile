@@ -12,6 +12,8 @@ target 'AwesomeProject' do
     :hermes_enabled => false
   )
 
+  pod 'YouTubeSdk', :path => '../node_modules/react-native-youtube-sdk'
+
   target 'AwesomeProjectTests' do
     inherit! :complete
     # Pods for testing

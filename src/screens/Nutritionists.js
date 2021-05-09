@@ -9,7 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 const Nutritionists = ({navigation}) => {
 return(
   <View style = {styles.container}>
-    <StatusBar backgroundColor ='#5f9ea0' barStyle="Light-content"/>
+    <StatusBar backgroundColor ='#009387' barStyle="Light-content"/>
     <View style = {styles.header}>
 <Text style ={styles.textheader}> Contact Our Nutritionists</Text>
 </View>
@@ -22,7 +22,7 @@ export default Nutritionists ;
 const styles= StyleSheet.create({
   container : {
     flex :1,
-    backgroundColor : '#5f9ea0'
+    backgroundColor : '#009387'
   },
   header: {
     flex : 1,
@@ -53,7 +53,7 @@ action: {
 flexDirection : 'row',
 marginTop: 0,
 borderBottomWidth: 1,
-borderBottomColor : '#5f9ea0',
+borderBottomColor : '#009387',
 paddingBottom :5,
 justifyContent: 'center'
 },

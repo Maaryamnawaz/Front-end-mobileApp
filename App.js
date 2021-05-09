@@ -1,11 +1,11 @@
-import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import {View,SafeAreaView,Text} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import {View,SafeAreaView,Text, Settings} from 'react-native';
+import MainScreen from './src/screens/Start'
 import HomeScreen from './src/screens/HomePage';
-import LoginScreen from './src/screens/Login';
+import LoginScreen from './src/screens/login';
 import SignUpScreen from './src/screens/SignUp';
 import Recepies from './src/screens/Recepies';
 import Workouts from './src/screens/Workouts';
@@ -21,110 +21,151 @@ import Facial from './src/screens/Facial';
 import Legs from './src/screens/Legs';
 import WarmUp from './src/screens/WarmUp';
 import Shoulders from './src/screens/Shoulders';
-const Stack = createStackNavigator();
-// const Drawer = createDrawerNavigator();
+import MainTabScreen from './src/screens/MainTabScreen';
+import {DrawerContent} from './src/screens/DrawerContent'
+import AboutUs from './src/screens/Aboutus';
+import RootStackScreen from './src/screens/RootStackScreen';
+import { ActivityIndicator } from 'react-native-paper';
+import { useEffect } from 'react';
+import Login from './src/screens/login';
+import SignUp from './src/screens/SignUp';
+import {AuthContext} from './src/components/context';
+import AsyncStorage from '@react-native-community/async-storage';
+
+//const MainStack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+// const MainStackScreen = ({navigation}) =>(
+//   <MainStack.Navigator screenOptions={{
+//           headerStyle:{
+//           backgroundColor:'#01ab9d',
+//         },
+//         headerTintColor: 'white',
+//         headerTitleStyle:{
+//           alignItems: 'center',
+          
+//           fontWeight: 'bold'
+//         }
+//         }}>
+//         <MainStack.Screen 
+//           name="Main"
+//             component={MainScreen}
+//             options={{title: 'Health & Nutrition'}
+//           }
+//           />
+//         </MainStack.Navigator>
+//   );
+
 export default function App() {
-  // eslint-disable-next-line prettier/prettier
-  return (    
-    <NavigationContainer initialRouteName="Login">
-   <Stack.Navigator screenOptions={{
-        headerStyle:{
-        backgroundColor:'#5f9ea0',
-      },
-      headerTintColor: 'white',
-      headerTitleStyle:{
-        alignItems: 'center',
-        
-        fontWeight: 'bold'
+ const initialLoginState={
+    isLoading:true,
+    userName : null,
+userToken : null,
+  };
+  const loginReducer=(prevState, action) =>{
+switch (action.type) {
+  case 'RETRIEVE_TOKEN':
+    return{
+      ...prevState,
+      userToken: action.token,
+      isLoading: false,
+    };
+  case 'LOGIN':
+    return{
+      ...prevState,
+      userName:action.id,
+      userToken:action.token,
+      isLoading: false
+    };
+    case 'REGISTER':
+    return{
+      ...prevState,
+      userName:action.id,
+      userToken:action.token,
+      isLoading: false
+    };
+    case 'LOGOUT':
+    return{
+      ...prevState,
+      userName:null,
+      userToken:null,
+      isLoading: false
+    };
+    }
+  };
+  const [loginState,dispatch] = React.useReducer(loginReducer,initialLoginState);
+  const authContext= React.useMemo(()=>({
+    Login:async(foundUser) =>{
+      // setUserToken('abc');
+      // setIsLoading(false);
+     const userToken= String(foundUser[0].userToken);
+     const userName = foundUser[0].username;
+        try{
+          userToken = 'abcd';
+          await AsyncStorage.setItem('userToken',userToken)
+        }
+       catch(e){
+         console.log(e);
+       } 
+      
+     // console.log('user token:',userToken);
+      dispatch({type: 'LOGIN', id:userName,token:userToken});
+    },
+    LogOut:async()=>{
+        try{
+          await AsyncStorage.removeItem('userToken')
+        }
+       catch(e){
+         console.log(e);
+       
       }
-      }}>
-      <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{title: 'LOGIN'}}
-        />
-        <Stack.Screen 
-        name="HomePage"
-          component={HomeScreen}
-          options={{title: 'HOMEPAGE'}}
-        />
-        <Stack.Screen
-          name="HomeScreen"
-          component={Home}
-          options={{title: 'HomeScreen'}}
-        />
-        <Stack.Screen 
-        name="Recepies"
-          component={Recepies}
-          options={{title: 'Recepies'}}
-        />
-         <Stack.Screen 
-        name="Workouts"
-          component={Workouts}
-          options={{title: 'Workouts'}}
-        />
-        <Stack.Screen 
-        name="Profile"
-          component={Profile}
-          options={{title: 'Profile'}}
-        />
-<Stack.Screen 
-        name="Blogs"
-          component={Blogs}
-          options={{title: 'Blogs&SuccessStories'}}
-        />
-        <Stack.Screen 
-        name="ChatBot"
-          component={ChatBot}
-          options={{title: 'ChatBot'}}
-        />
-        <Stack.Screen 
-        name="Nutritionists"
-          component={Nutritionists}
-          options={{title: 'Nutritionists'}}
-        />
-         
-       <Stack.Screen
-          name="SignUp"
-          component={SignUpScreen}
-          options={{title: 'Sign Up'}}
-        /> 
-        <Stack.Screen
-          name="FullBody"
-          component={FullBody}
-          options={{title: 'FullBody'}}
-        />
-        <Stack.Screen
-          name="Abs"
-          component={Abs}
-          options={{title: 'Abs'}}
-        />
-        <Stack.Screen
-          name="Arms"
-          component={Arms}
-          options={{title: 'Arms'}}
-        /> 
-        <Stack.Screen
-          name="Legs"
-          component={Legs}
-          options={{title: 'Legs'}}
-        />
-        <Stack.Screen
-          name="Facial"
-          component={Facial}
-          options={{title: 'Facial'}}
-        />
-        <Stack.Screen
-          name="WarmUp"
-          component={WarmUp}
-          options={{title: 'Warm Up'}}
-        />
-        <Stack.Screen
-          name="Shoulders"
-          component={Shoulders}
-          options={{title: 'Shoulders'}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+      // setUserToken(null);
+      // setIsLoading(false);
+      dispatch({type: 'LOGOUT'});
+    },
+    SignUp:()=>{
+      setUserToken('abc');
+      setIsLoading(false);
+    },
+
+  }),[]);
+  useEffect(()=>{
+ setTimeout(async() => {
+  // setIsLoading(false);
+  let userToken;
+  userToken = null;
+  try{
+     await AsyncStorage.getItem('userToken')
+    }
+   catch(e){
+     console.log(e);
+   } 
+  
+  //console.log('user token:',userToken);
+  dispatch({type: 'REGISTER',token: userToken});
+ },1000);
+  },[]);
+  if(loginState.isLoading){
+    return(
+      <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+        <ActivityIndicator size='Large'/>
+      </View>
+
+    );
+  }
+return ( 
+  <AuthContext.Provider value={authContext}>  
+    <NavigationContainer>
+      {loginState.userToken !==  null ?(
+        <Drawer.Navigator drawerContent={props => <DrawerContent {...props}/>}>
+        <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
+      <Drawer.Screen name="AboutUs" component={AboutUs} />  
+    {/* <Drawer.Screen name="Settings" component={Settingscreen} /> */}
+      </Drawer.Navigator>
+      )
+    :
+    <RootStackScreen/>
+    }
+ </NavigationContainer>
+    </AuthContext.Provider> 
    );
 }
